@@ -16,10 +16,9 @@ module.exports = (grunt) ->
     watch:
       options:
         livereload: LIVERELOAD_PORT
-        atBegin: true
       coffee:
-        files: ['lib/**/*.coffee']
-        tasks: ['transpile', 'coffee', 'browserify']
+        files: ['app/scripts/**/*.coffee']
+        tasks: ['coffee']
 
     connect:
       options:
@@ -30,7 +29,7 @@ module.exports = (grunt) ->
           middleware: (connect) ->
             [
               lrSnippet
-              mountFolder(connect, '.tmp/js') # for Sourcemap support
+              mountFolder(connect, '.tmp') # for Sourcemap support
               mountFolder(connect, 'app')
             ]
 
@@ -59,8 +58,8 @@ module.exports = (grunt) ->
           # bare: true
         files: [
           expand: true
-          cwd: '.tmp/coffee'
-          src: ['**/*.coffee']
+          cwd: 'app'
+          src: ['scripts/**/*.coffee']
           dest: '.tmp/js'
           ext: '.js'
         ]
@@ -77,7 +76,7 @@ module.exports = (grunt) ->
         url: 'http://localhost:<%= connect.options.port %>'
 
   grunt.registerTask 'server', [
-    'clean:server'
+    'build'
     'connect'
     'open'
     'watch'
@@ -85,9 +84,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', [
     'clean'
-    'transpile'
     'coffee'
-    'browserify'
   ]
 
   grunt.registerTask 'default', ['build']
