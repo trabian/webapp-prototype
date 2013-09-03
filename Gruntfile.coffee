@@ -17,8 +17,11 @@ module.exports = (grunt) ->
       options:
         livereload: LIVERELOAD_PORT
       coffee:
-        files: ['app/scripts/**/*.coffee']
-        tasks: ['coffee']
+        files: ['client/app/**/*.coffee']
+        tasks: ['coffee', 'browserify']
+      html:
+        files: ['app/**/*.html']
+        tasks: []
 
     connect:
       options:
@@ -30,46 +33,46 @@ module.exports = (grunt) ->
             [
               lrSnippet
               mountFolder(connect, '.tmp') # for Sourcemap support
-              mountFolder(connect, 'app')
+              mountFolder(connect, 'build')
             ]
 
     clean:
       server: '.tmp'
 
-    transpile:
-      cjs:
-        type: 'cjs'
-        files: [
-          expand: true
-          cwd: 'lib/'
-          src: ['**/*.js']
-          dest: '.tmp/js'
-        ,
-          expand: true
-          cwd: 'lib/'
-          src: ['**/*.coffee']
-          dest: '.tmp/coffee'
-        ]
-
     coffee:
       compile:
         options:
           sourceMap: true
-          # bare: true
+          bare: true
         files: [
           expand: true
-          cwd: 'app'
-          src: ['scripts/**/*.coffee']
+          cwd: 'client/app'
+          src: ['**/*.coffee']
           dest: '.tmp/js'
           ext: '.js'
         ]
 
     browserify:
-      dist:
+      common:
+        src: []
+        dest: 'build/js/common.js'
+        options:
+          alias: [
+            'bower_components/underscore/underscore.js:underscore'
+            'bower_components/backbone/backbone.js:backbone'
+            'bower_components/chaplin/chaplin.js:chaplin'
+            # 'bower_components/jquery/jquery.js:jquery'
+          ]
+          shim:
+            jquery:
+              path: 'bower_components/jquery/jquery.js'
+              exports: '$'
+      app:
         options:
           debug: true
+          external: ['backbone', 'underscore', 'chaplin', 'jquery']
         files:
-          'app/js/modules.js': ['.tmp/js/**/*.js']
+          'build/js/modules.js': ['.tmp/js/**/*.js']
 
     open:
       server:
@@ -85,6 +88,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', [
     'clean'
     'coffee'
+    'browserify'
   ]
 
   grunt.registerTask 'default', ['build']
