@@ -6,3 +6,4 @@ build/js
 .tmp
 .sass-cache
 Gemfile.lock
+.DS_Store
