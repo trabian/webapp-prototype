@@ -1,10 +1,6 @@
-sample = require './sample'
+Application = require './application'
 
-$ = require 'jquery'
-Backbone = require 'backbone'
-
-require 'fries'
-
-Backbone.$ = $
-
-sample.run()
+app = new Application
+  routes: require './routes'
+  controllerPath: 'app/controllers/'
+  controllerSuffix: ''
