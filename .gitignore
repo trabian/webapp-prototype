@@ -4,3 +4,5 @@ build/css
 build/js
 *.log
 .tmp
+.sass-cache
+Gemfile.lock

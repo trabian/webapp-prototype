@@ -22,6 +22,9 @@ module.exports = (grunt) ->
       html:
         files: ['app/**/*.html']
         tasks: []
+      sass:
+        files: ['client/sass/**/*.sass']
+        tasks: ['compass']
 
     connect:
       options:
@@ -51,6 +54,13 @@ module.exports = (grunt) ->
           dest: '.tmp/js'
           ext: '.js'
         ]
+
+    compass:
+      dev:
+        options:
+          sassDir: 'client/sass'
+          cssDir: 'build/css'
+          importPath: 'bower_components/fries/lib/sass'
 
     browserify:
       common:
