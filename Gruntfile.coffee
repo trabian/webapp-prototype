@@ -21,7 +21,7 @@ module.exports = (grunt) ->
         files: ['client/app/**/*.coffee']
         tasks: ['coffee', 'browserify:app']
       html:
-        files: ['app/**/*.html']
+        files: ['build/**/*.html']
         tasks: []
       sass:
         files: ['client/sass/**/*.sass']
