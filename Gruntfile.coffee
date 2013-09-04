@@ -61,12 +61,8 @@ module.exports = (grunt) ->
             'bower_components/underscore/underscore.js:underscore'
             'bower_components/backbone/backbone.js:backbone'
             'bower_components/chaplin/chaplin.js:chaplin'
-            # 'bower_components/jquery/jquery.js:jquery'
+            'bower_components/jquery/jquery.js:jquery'
           ]
-          shim:
-            jquery:
-              path: 'bower_components/jquery/jquery.js'
-              exports: '$'
       app:
         options:
           debug: true
