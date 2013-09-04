@@ -36,11 +36,17 @@ module.exports = (grunt) ->
             [
               lrSnippet
               mountFolder(connect, '.tmp') # for Sourcemap support
+              mountFolder(connect, 'bower_components/fries/lib')
               mountFolder(connect, 'build')
             ]
 
     clean:
       server: '.tmp'
+
+    concat:
+      fries:
+        src: 'bower_components/fries/lib/js/*.js'
+        dest: '.tmp/vendor/fries.js'
 
     coffee:
       compile:
@@ -72,11 +78,12 @@ module.exports = (grunt) ->
             'bower_components/backbone/backbone.js:backbone'
             'bower_components/chaplin/chaplin.js:chaplin'
             'bower_components/jquery/jquery.js:jquery'
+            '.tmp/vendor/fries.js:fries'
           ]
       app:
         options:
           debug: true
-          external: ['backbone', 'underscore', 'chaplin', 'jquery']
+          external: ['backbone', 'underscore', 'chaplin', 'jquery', 'fries']
         files:
           'build/js/modules.js': ['.tmp/js/**/*.js']
 
@@ -94,6 +101,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', [
     'clean'
     'coffee'
+    'concat'
     'browserify'
   ]
 
