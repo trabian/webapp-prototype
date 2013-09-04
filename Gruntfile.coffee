@@ -147,6 +147,11 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'build', [
+    'build:js'
+    'compass'
+  ]
+
+  grunt.registerTask 'build:js', [
     'clean'
     'coffee'
     'concat'
