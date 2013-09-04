@@ -16,6 +16,7 @@ module.exports = (grunt) ->
     watch:
       options:
         livereload: LIVERELOAD_PORT
+        spawn: false
       coffee:
         files: ['client/app/**/*.coffee']
         tasks: ['coffee', 'browserify:app']
