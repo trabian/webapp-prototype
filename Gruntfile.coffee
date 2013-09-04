@@ -18,7 +18,7 @@ module.exports = (grunt) ->
         livereload: LIVERELOAD_PORT
       coffee:
         files: ['client/app/**/*.coffee']
-        tasks: ['coffee', 'browserify']
+        tasks: ['coffee', 'browserify:app']
       html:
         files: ['app/**/*.html']
         tasks: []
