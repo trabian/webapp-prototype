@@ -1,7 +1,5 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"jquery":[function(require,module,exports){
 module.exports=require('NlWkmg');
-},{}],"chaplin":[function(require,module,exports){
-module.exports=require('N38JCY');
 },{}],"CJyfN6":[function(require,module,exports){
 //     Backbone.js 1.0.0
 
@@ -1575,7 +1573,9 @@ module.exports=require('N38JCY');
 
 }).call(this);
 
-},{"underscore":"RuoXBx"}],"N38JCY":[function(require,module,exports){
+},{"underscore":"RuoXBx"}],"backbone":[function(require,module,exports){
+module.exports=require('CJyfN6');
+},{}],"N38JCY":[function(require,module,exports){
 /*!
  * Chaplin 0.10.0
  *
@@ -4113,7 +4113,6 @@ if (typeof define === 'function' && define.amd) {
 })();
 
 },{"backbone":"CJyfN6","underscore":"RuoXBx"}],"NlWkmg":[function(require,module,exports){
-var global=self;(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
  * jQuery JavaScript Library v2.0.3
  * http://jquery.com/
@@ -12944,12 +12943,8 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 })( window );
 
-; browserify_shim__define__module__export__(typeof $ != "undefined" ? $ : window.$);
-
-}).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
-
-},{}],"backbone":[function(require,module,exports){
-module.exports=require('CJyfN6');
+},{}],"chaplin":[function(require,module,exports){
+module.exports=require('N38JCY');
 },{}],"RuoXBx":[function(require,module,exports){
 //     Underscore.js 1.5.1
 //     http://underscorejs.org
