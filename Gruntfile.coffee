@@ -4,8 +4,13 @@ LIVERELOAD_PORT = 35740
 
 lrSnippet = require('connect-livereload') port: LIVERELOAD_PORT
 
+redis = require 'redis'
+client = redis.createClient()
+
+path = require 'path'
+
 mountFolder = (connect, dir) ->
-  connect.static require('path').resolve dir
+  connect.static path.resolve dir
 
 module.exports = (grunt) ->
 
@@ -20,21 +25,21 @@ module.exports = (grunt) ->
       browserify:
         files: ['client/app/**/*.{coffee,jade}']
         tasks: ['browserify:app']
-      html:
-        files: ['build/**/*.html']
-        tasks: []
-      sassApp:
-        files: [
-          'client/sass/app/**/*.sass'
-          'client/sass/common/**/*.sass'
-        ]
-        tasks: ['compass:app']
-      sassLib:
-        files: [
-          'client/sass/lib/**/*.sass'
-          'client/sass/common/**/*.sass'
-        ]
-        tasks: ['compass:lib']
+      # html:
+      #   files: ['public/**/*.html']
+      #   tasks: []
+      # sassApp:
+      #   files: [
+      #     'client/sass/app/**/*.sass'
+      #     'client/sass/common/**/*.sass'
+      #   ]
+      #   tasks: ['compass:app']
+      # sassLib:
+      #   files: [
+      #     'client/sass/lib/**/*.sass'
+      #     'client/sass/common/**/*.sass'
+      #   ]
+      #   tasks: ['compass:lib']
 
     connect:
       options:
@@ -45,55 +50,45 @@ module.exports = (grunt) ->
           middleware: (connect) ->
             [
               lrSnippet
-              mountFolder(connect, '.tmp') # for Sourcemap support
-              mountFolder(connect, 'bower_components/fries/lib')
-              mountFolder(connect, 'build')
-              mountFolder(connect, '.')
+              mountFolder(connect, 'public')
             ]
 
     clean:
-      server: '.tmp'
-      js: 'build/js'
-      css: 'build/css'
-
-    concat:
-      fries:
-        src: 'bower_components/fries/lib/js/*.js'
-        dest: '.tmp/vendor/fries.js'
+      generated: 'public/generated'
 
     compass:
       options:
         importPath: [
-          'bower_components/fries/lib/sass'
           'client/sass/common'
         ]
         bundleExec: true
       app:
         options:
           sassDir: 'client/sass/app'
-          cssDir: 'build/css/app'
+          cssDir: 'public/generated/css/app'
       lib:
         options:
           sassDir: 'client/sass/lib'
-          cssDir: 'build/css/lib'
+          cssDir: 'public/generated/css/lib'
 
     browserify:
+
       common:
         src: []
-        dest: 'build/js/common.js'
+        dest: 'public/generated/js/common.js'
         options:
           alias: [
             'bower_components/underscore/underscore.js:underscore'
             'bower_components/backbone/backbone.js:backbone'
             'bower_components/jquery/jquery.js:jquery'
-            '.tmp/vendor/fries.js:fries'
           ]
+
       app:
         src: ['client/app/index.coffee']
-        dest: 'build/js/app.js'
+        dest: 'public/generated/js/app.js'
         options:
           debug: true
-          external: ['backbone', 'underscore', 'jquery', 'fries']
+          external: ['backbone', 'underscore', 'jquery']
           alias: [
             'bower_components/chaplin/chaplin.js:chaplin'
           ]
@@ -114,25 +109,6 @@ module.exports = (grunt) ->
       server:
         url: 'http://localhost:<%= connect.options.port %>'
 
-    sass:
-      options:
-        compass: true
-        bundleExec: true
-        loadPath: [
-          'bower_components/fries/lib/sass'
-          'client/sass/common'
-        ]
-      app:
-        # options:
-        #   sourcemap: true
-        files: [
-          expand: true
-          cwd: 'client/sass'
-          src: ['app/**/*.sass']
-          dest: 'build/css'
-          ext: '.css'
-        ]
-
   grunt.registerTask 'server', [
     'build'
     'connect'
@@ -141,14 +117,17 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'build', [
-    'build:js'
+    'clean'
+    'browserify'
     'compass'
   ]
 
-  grunt.registerTask 'build:js', [
-    'clean'
-    'concat'
-    'browserify'
-  ]
-
   grunt.registerTask 'default', ['build']
+
+  grunt.event.on 'browserify.dep', (dep) ->
+
+    for id, pathName of dep.deps
+      do (id, pathName) ->
+        if pathName
+          id = pathName.replace /\.([aZ]*)$/, ''
+          client.hset "browserify:#{dep.id}", id, pathName

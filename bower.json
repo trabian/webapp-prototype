@@ -17,7 +17,6 @@
     "chaplin": "~0.10.0",
     "underscore": "~1.5.1",
     "backbone": "~1.0.0",
-    "jquery": "~2.0.3",
-    "fries": "jaunesarmiento/fries#wip-1.0.1"
+    "jquery": "~2.0.3"
   }
 }

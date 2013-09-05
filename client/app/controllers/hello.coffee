@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-HelloView = require 'app/views/hello'
+HelloView = require 'app/views/hello/index'
 
 module.exports = class HelloController extends Chaplin.View
 
@@ -8,4 +8,6 @@ module.exports = class HelloController extends Chaplin.View
 
     @view = new HelloView
       message: 'Hello World!'
-      el: 'h1'
+      el: '#main'
+
+    console.warn 'HELLO!'

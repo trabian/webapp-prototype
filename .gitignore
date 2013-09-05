@@ -1,9 +1,7 @@
 node_modules
 bower_components
-build/css
-build/js
+public/generated
 *.log
-.tmp
 .sass-cache
 Gemfile.lock
 .DS_Store
