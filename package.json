@@ -18,10 +18,10 @@
     "debowerify": "~0.1.4",
     "grunt-contrib-compass": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
-    "redis": "~0.8.4",
     "jade": "~0.35.0",
     "simple-jadeify": "~2.0.1",
-    "coffeeify": "~0.5.1"
+    "coffeeify": "~0.5.1",
+    "grunt-browserify-navigation": "git://github.com/trabian/grunt-browserify-navigation.git"
   },
   "optionalDependencies": {},
   "engines": {

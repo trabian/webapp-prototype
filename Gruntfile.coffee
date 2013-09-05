@@ -4,9 +4,6 @@ LIVERELOAD_PORT = 35740
 
 lrSnippet = require('connect-livereload') port: LIVERELOAD_PORT
 
-redis = require 'redis'
-client = redis.createClient()
-
 path = require 'path'
 
 mountFolder = (connect, dir) ->
@@ -105,6 +102,8 @@ module.exports = (grunt) ->
             dest: 'app'
           ]
 
+    browserify_navigation: {}
+
     open:
       server:
         url: 'http://localhost:<%= connect.options.port %>'
@@ -118,16 +117,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', [
     'clean'
+    'browserify_navigation'
     'browserify'
     'compass'
   ]
 
   grunt.registerTask 'default', ['build']
-
-  grunt.event.on 'browserify.dep', (dep) ->
-
-    for id, pathName of dep.deps
-      do (id, pathName) ->
-        if pathName
-          id = pathName.replace /\.([aZ]*)$/, ''
-          client.hset "browserify:#{dep.id}", id, pathName
