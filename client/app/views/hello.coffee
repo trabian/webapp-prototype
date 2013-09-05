@@ -1,17 +1,12 @@
 Chaplin = require 'chaplin'
 
-HelloController = require 'app/controllers/hello'
-
 module.exports = class HelloView extends Chaplin.View
 
-  getTemplateFunction: -> null
+  template: require './template'
+
+  getTemplateFunction: -> @template
+
+  getTemplateData: ->
+    message: @options.message
 
   autoRender: true
-
-  render: ->
-
-    super
-
-    @$el.html @options.message
-
-    @

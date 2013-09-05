@@ -17,9 +17,9 @@ module.exports = (grunt) ->
       options:
         livereload: LIVERELOAD_PORT
         spawn: false
-      coffee:
-        files: ['client/app/**/*.coffee']
-        tasks: ['coffee', 'browserify:app']
+      browserify:
+        files: ['client/app/**/*.{coffee,jade}']
+        tasks: ['browserify:app']
       html:
         files: ['build/**/*.html']
         tasks: []
@@ -61,19 +61,6 @@ module.exports = (grunt) ->
         src: 'bower_components/fries/lib/js/*.js'
         dest: '.tmp/vendor/fries.js'
 
-    coffee:
-      compile:
-        options:
-          sourceMap: true
-          bare: true
-        files: [
-          expand: true
-          cwd: 'client/app'
-          src: ['**/*.coffee']
-          dest: '.tmp/js'
-          ext: '.js'
-        ]
-
     compass:
       options:
         importPath: [
@@ -102,7 +89,7 @@ module.exports = (grunt) ->
             '.tmp/vendor/fries.js:fries'
           ]
       app:
-        src: ['.tmp/js/**/*.js']
+        src: ['client/app/index.coffee']
         dest: 'build/js/app.js'
         options:
           debug: true
@@ -110,9 +97,16 @@ module.exports = (grunt) ->
           alias: [
             'bower_components/chaplin/chaplin.js:chaplin'
           ]
+          extensions: [
+            '.js', '.coffee', '.jade'
+          ]
+          transform: [
+            'simple-jadeify'
+            'coffeeify'
+          ]
           aliasMappings: [
-            cwd: '.tmp/js'
-            src: ['**/*.js']
+            cwd: 'client/app'
+            src: ['**/*.coffee']
             dest: 'app'
           ]
 
@@ -153,7 +147,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build:js', [
     'clean'
-    'coffee'
     'concat'
     'browserify'
   ]
