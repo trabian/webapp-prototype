@@ -7,20 +7,20 @@
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
+    "bower": "~1.2.5",
+    "coffeeify": "~0.5.1",
+    "connect-livereload": "~0.2.0",
     "grunt": "~0.4.1",
-    "matchdep": "~0.1.2",
-    "grunt-contrib-clean": "~0.5.0",
     "grunt-browserify": "git://github.com/trabian/grunt-browserify.git",
-    "grunt-open": "~0.2.2",
+    "grunt-browserify-navigation": "git://github.com/trabian/grunt-browserify-navigation.git",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-compass": "~0.5.0",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-contrib-watch": "~0.5.3",
-    "connect-livereload": "~0.2.0",
-    "bower": "~1.2.5",
-    "grunt-contrib-compass": "~0.5.0",
+    "grunt-open": "~0.2.2",
     "jade": "~0.35.0",
-    "simple-jadeify": "~2.0.1",
-    "coffeeify": "~0.5.1",
-    "grunt-browserify-navigation": "git://github.com/trabian/grunt-browserify-navigation.git"
+    "matchdep": "~0.1.2",
+    "simple-jadeify": "~2.0.1"
   },
   "engines": {
     "node": "*"
