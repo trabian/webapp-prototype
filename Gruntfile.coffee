@@ -70,9 +70,9 @@ module.exports = (grunt) ->
 
     browserify:
 
-      common:
+      lib:
         src: []
-        dest: 'public/generated/js/common.js'
+        dest: 'public/generated/js/lib.js'
         options:
           alias: [
             'bower_components/underscore/underscore.js:underscore'
