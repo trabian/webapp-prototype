@@ -22,21 +22,21 @@ module.exports = (grunt) ->
       browserify:
         files: ['client/app/**/*.{coffee,jade}']
         tasks: ['browserify:app']
-      # html:
-      #   files: ['public/**/*.html']
-      #   tasks: []
-      # sassApp:
-      #   files: [
-      #     'client/sass/app/**/*.sass'
-      #     'client/sass/common/**/*.sass'
-      #   ]
-      #   tasks: ['compass:app']
-      # sassLib:
-      #   files: [
-      #     'client/sass/lib/**/*.sass'
-      #     'client/sass/common/**/*.sass'
-      #   ]
-      #   tasks: ['compass:lib']
+      html:
+        files: ['public/**/*.html']
+        tasks: []
+      sass_app:
+        files: [
+          'client/sass/app/**/*.sass'
+          'client/sass/common/**/*.sass'
+        ]
+        tasks: ['compass:app']
+      sass_lib:
+        files: [
+          'client/sass/lib/**/*.sass'
+          'client/sass/common/**/*.sass'
+        ]
+        tasks: ['compass:lib']
 
     connect:
       options:
