@@ -1,8 +1,8 @@
 Chaplin = require 'chaplin'
 
-HelloView = require 'app/views/hello/index'
+HelloView = require '../views/hello'
 
-module.exports = class HelloController extends Chaplin.View
+module.exports = class HelloController extends Chaplin.Controller
 
   show: ->
 
@@ -10,4 +10,4 @@ module.exports = class HelloController extends Chaplin.View
       message: 'Hello World!'
       el: '#main'
 
-    console.warn 'HELLO!'
+    console.warn 'HELLO! If you check me out in Chrome you can see my source map.'
