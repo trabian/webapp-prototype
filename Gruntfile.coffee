@@ -46,7 +46,7 @@ module.exports = (grunt) ->
       # expression below.
       browserify:
         files: ['client/app/**/*.{coffee,jade,js}']
-        tasks: ['browserify:app']
+        tasks: ['coffeelint', 'browserify:app']
 
       # Trigger livereload when any .html files are changed within 'public'.
       html:
@@ -155,6 +155,9 @@ module.exports = (grunt) ->
     # Navigation plugin in Sublime Text.
     browserify_navigation: {}
 
+    coffeelint:
+      app: ['client/app/**/*.coffee']
+
     # Open the web app within the default browser.
     open:
       server:
@@ -171,6 +174,7 @@ module.exports = (grunt) ->
   # Build the .css and .js files.
   grunt.registerTask 'build', [
     'clean'
+    'coffeelint'
     'browserify_navigation'
     'browserify'
     'compass'

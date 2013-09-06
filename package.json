@@ -13,6 +13,7 @@
     "grunt": "~0.4.1",
     "grunt-browserify": "git://github.com/trabian/grunt-browserify.git",
     "grunt-browserify-navigation": "git://github.com/trabian/grunt-browserify-navigation.git",
+    "grunt-coffeelint": "0.0.7",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-compass": "~0.5.0",
     "grunt-contrib-connect": "~0.3.0",

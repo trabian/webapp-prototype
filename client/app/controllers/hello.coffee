@@ -10,4 +10,4 @@ module.exports = class HelloController extends Chaplin.Controller
       message: 'Hello World!'
       el: '#main'
 
-    console.warn 'HELLO! If you check me out in Chrome you can see my source map.'
+    console.warn 'HELLO! Check me out in Chrome to see my source map.'
