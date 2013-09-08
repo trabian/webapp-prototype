@@ -225,7 +225,6 @@ module.exports = (grunt) ->
     'browserify_navigation'
     'browserify'
   ]
-  ]
 
   grunt.registerTask 'test', [
     'build:js'
