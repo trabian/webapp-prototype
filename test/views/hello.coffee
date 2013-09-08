@@ -1,6 +1,6 @@
-describe 'Sample', ->
+describe 'The HelloView', ->
 
-  it 'should allow referencing a CommonJS module', ->
+  it 'should render the message', ->
 
     HelloView = require 'app/views/hello'
 
