@@ -71,7 +71,8 @@ module.exports = (grunt) ->
 
     # Remove generated files from public/generated
     clean:
-      generated: 'public/generated'
+      css: 'public/generated/css'
+      js: 'public/generated/js'
 
     # Convert .sass/.scss to .css using Compass
     compass:
