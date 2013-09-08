@@ -46,7 +46,7 @@ module.exports = (grunt) ->
       # expression below.
       browserify:
         files: ['client/app/**/*.{coffee,jade,js}']
-        tasks: ['coffeelint', 'browserify:app']
+        tasks: ['coffeelint', 'browserify:app', 'karma:unit:run']
 
       # Trigger livereload when any .html files are changed within 'public'.
       html:
@@ -68,6 +68,10 @@ module.exports = (grunt) ->
           'client/sass/common/**/*.sass'
         ]
         tasks: ['compass:lib']
+
+      karma:
+        files: ['test/**/*.coffee']
+        tasks: ['karma:unit:run']
 
     # Remove generated files from public/generated
     clean:
@@ -172,11 +176,39 @@ module.exports = (grunt) ->
       server:
         url: 'http://localhost:<%= connect.options.port %>'
 
+    karma:
+      options:
+        frameworks: ['mocha', 'chai', 'chai-jquery']
+        preprocessors:
+          'test/**/*.coffee': ['coffee']
+        reporters: ['spec']
+        autoWatch: false
+        browsers: ['PhantomJS']
+        coffeePreprocessor:
+          options:
+            bare: true
+            sourceMap: false
+        files: [
+          'public/generated/js/lib.js'
+          'public/generated/js/app.js'
+          'test/**/*.coffee'
+        ]
+        # plugins: [
+        #   'karma-mocha'
+        #   'karma-spec-reporter'
+        # ]
+      unit:
+        background: true
+        singleRun: false
+      continuous:
+        singleRun: true
+
   # Run the server and watch for changes.
   grunt.registerTask 'server', [
     'build'
     'connect'
     'open'
+    'karma:unit'
     'watch'
   ]
 
@@ -193,6 +225,16 @@ module.exports = (grunt) ->
     'browserify_navigation'
     'browserify'
   ]
+  ]
+
+  grunt.registerTask 'test', [
+    'build:js'
+    'karma:continuous'
+  ]
+
+  grunt.registerTask 'test:watch', [
+    'karma:unit'
+    'watch'
   ]
 
   # Run the 'build' task by default.
