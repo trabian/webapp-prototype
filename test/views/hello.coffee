@@ -4,7 +4,9 @@ describe 'The HelloView', ->
 
     HelloView = require 'app/views/hello'
 
-    helloView = new HelloView
-      message: 'Hi.'
+    message = 'Hi.'
 
-    helloView.$el.should.contain 'Hi.'
+    helloView = new HelloView
+      message: message
+
+    helloView.$el.should.contain message
