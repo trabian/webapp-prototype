@@ -182,11 +182,17 @@ module.exports = (grunt) ->
 
   # Build the .css and .js files.
   grunt.registerTask 'build', [
-    'clean'
+    'clean:css'
+    'build:js'
+    'compass'
+  ]
+
+  grunt.registerTask 'build:js', [
+    'clean:js'
     'coffeelint'
     'browserify_navigation'
     'browserify'
-    'compass'
+  ]
   ]
 
   # Run the 'build' task by default.
