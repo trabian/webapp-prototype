@@ -3,8 +3,12 @@
     "name": "Matt Dean",
     "email": "matt@trabian.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trabian/webapp-prototype.git"
+  },
   "name": "webapp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {},
   "devDependencies": {
     "bower": "~1.2.5",
