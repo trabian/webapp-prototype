@@ -49,14 +49,6 @@ This will add the `grunt` command to your system path. Note that the grunt modul
 npm install -g grunt-cli
 ```
 
-### Bower
-
-This will add the `bower` command to your system path.
-
-```
-npm install -g bower
-```
-
 ### Redis (optional)
 
 [Redis](http://redis.io/) must be installed and running to use the [BrowserifyNavigation](https://github.com/trabian/BrowserifyNavigation) plugin through SublimeText. This is also most easily installed using Homebrew on OS X. Follow the instructions provided at the completion of the installation to start Redis and have it start automatically on startup.
@@ -75,12 +67,6 @@ Note: This may take a minute depending on the speed of your Internet connection.
 
 ```
 npm install
-```
-
-### Bower modules
-
-```
-bower install
 ```
 
 ### Ruby gems (via Bundler)

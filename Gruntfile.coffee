@@ -73,6 +73,11 @@ module.exports = (grunt) ->
         files: ['test/**/*.coffee']
         tasks: ['karma:unit:run']
 
+    bower:
+      install:
+        options:
+          copy: false
+
     # Remove generated files from public/generated
     clean:
       css: 'public/generated/css'
@@ -214,6 +219,7 @@ module.exports = (grunt) ->
 
   # Build the .css and .js files.
   grunt.registerTask 'build', [
+    'bower:install'
     'clean:css'
     'build:js'
     'compass'
