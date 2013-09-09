@@ -186,7 +186,7 @@ module.exports = (grunt) ->
         frameworks: ['mocha', 'chai', 'chai-jquery']
         preprocessors:
           'test/**/*.coffee': ['coffee']
-        reporters: ['spec', 'growl']
+        reporters: ['spec', 'osx']
         autoWatch: false
         browsers: ['PhantomJS']
         coffeePreprocessor:
