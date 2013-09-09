@@ -1,6 +1,6 @@
 Application = require './application'
 
-app = new Application
+new Application
   routes: require './routes'
   controllerPath: 'app/controllers/'
   controllerSuffix: ''
