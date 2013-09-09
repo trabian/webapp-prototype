@@ -25,10 +25,13 @@ The following dependencies are needed to run this prototype but are usually avai
 
 ### [Bundler](http://bundler.io/)
 
-Used for managing Ruby dependencies. This assumes that ruby and rubygems are already installed, which is a safe assumption on OS X but can be installed on other environments using the instructions at [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/).
+Used for managing Ruby dependencies. This assumes that ruby and rubygems are already installed, which is a safe assumption on OS X but can be installed on other environments using the instructions at [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/).  You may need to use sudo (for OSX, *nix, BSD etc) or run your command shell as Administrator (for Windows) to do this.
 
 ```
 gem install bundler
+
+# Or, if that throws a permissions error:
+sudo gem install bundler
 ```
 
 ### npm (via [Node](http://nodejs.org/))
