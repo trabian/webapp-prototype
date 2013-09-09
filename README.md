@@ -33,6 +33,8 @@ gem install bundler
 
 ### npm (via [Node](http://nodejs.org/))
 
+**If node is already installed on your system, make sure you have at least version 0.10.x.** If you want to keep multiple versions of node then you may want to checkout [nodeenv](https://github.com/wfarr/nodenv) or [n](https://github.com/visionmedia/n).
+
 Used for managing JavaScript dependencies. The easiest way to install Node on OS X is through [Homebrew](http://brew.sh/).
 
 ```
