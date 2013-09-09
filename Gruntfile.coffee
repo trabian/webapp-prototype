@@ -219,13 +219,13 @@ module.exports = (grunt) ->
 
   # Build the .css and .js files.
   grunt.registerTask 'build', [
-    'bower:install'
     'clean:css'
     'build:js'
     'compass'
   ]
 
   grunt.registerTask 'build:js', [
+    'bower:install'
     'clean:js'
     'coffeelint'
     'browserify_navigation'
