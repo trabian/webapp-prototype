@@ -66,7 +66,7 @@ The webapp prototype includes node dependencies and ruby depencies (for Compass 
 
 ### npm (Node) modules
 
-Note: This may take a minute depending on the speed of your Internet connection.
+Note: This may take a few minutes depending on the speed of your Internet connection.
 
 ```
 npm install
