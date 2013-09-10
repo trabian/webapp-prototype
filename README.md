@@ -10,6 +10,8 @@ The stack consists of:
  * [Bower](http://bower.io/) for client-side package management.
  * [Karma](http://karma-runner.github.io/0.10/index.html), [mocha](http://visionmedia.github.io/mocha/), and [Chai](http://chaijs.com/) for testing.
 
+**To generate a new project using the structure within this prototype, use the [generator-trabian-webapp](https://github.com/trabian/generator-trabian-webapp) Yeoman generator.**
+
 # Getting Started
 
 ## Clone the repository
