@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-module.exports = class HelloView extends Chaplin.View
+module.exports = class WelcomeView extends Chaplin.View
 
   template: require './template'
 

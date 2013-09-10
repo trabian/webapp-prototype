@@ -1,3 +1,3 @@
 module.exports = (match) ->
 
-  match '', 'hello#show'
+  match '', 'welcome#index'

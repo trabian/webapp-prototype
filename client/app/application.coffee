@@ -7,4 +7,4 @@ Chaplin = require 'chaplin'
 
 module.exports = class Application extends Chaplin.Application
 
-  title: 'Webapp Prototype'
+  title: 'webapp prototype'
