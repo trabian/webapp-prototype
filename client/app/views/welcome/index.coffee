@@ -1,12 +1,5 @@
-Chaplin = require 'chaplin'
+BaseView = require 'app/views/base'
 
-module.exports = class WelcomeView extends Chaplin.View
+module.exports = class WelcomeView extends BaseView
 
   template: require './template'
-
-  getTemplateFunction: -> @template
-
-  getTemplateData: ->
-    message: @options.message
-
-  autoRender: true
