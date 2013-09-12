@@ -187,7 +187,7 @@ module.exports = (grunt) ->
 
     karma:
       options:
-        frameworks: ['mocha', 'chai', 'chai-jquery']
+        frameworks: ['mocha', 'chai', 'chai-jquery', 'sinon-chai']
         preprocessors:
           'test/**/*.coffee': ['coffee']
         reporters: ['spec', 'osx']
