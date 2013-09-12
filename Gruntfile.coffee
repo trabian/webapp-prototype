@@ -202,10 +202,6 @@ module.exports = (grunt) ->
           'public/generated/js/app.js'
           'test/**/*.coffee'
         ]
-        # plugins: [
-        #   'karma-mocha'
-        #   'karma-spec-reporter'
-        # ]
       unit:
         background: true
         singleRun: false
