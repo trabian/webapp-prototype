@@ -10,10 +10,11 @@ module.exports = class TodosController extends BaseController
 
     collection = new TodoCollection [
       id: 1
-      name: 'This is a sample todo'
+      title: 'This is a sample todo'
     ,
       id: 2
-      name: 'This is another todo'
+      title: 'This is a completed todo'
+      completed: true
     ]
 
     @view = new TodoListView

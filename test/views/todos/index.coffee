@@ -7,11 +7,11 @@ describe 'TodosView', ->
   beforeEach ->
 
     @collection = new TodoCollection [
-      name: 'Todo 1'
+      title: 'Todo 1'
     ,
-      name: 'Todo 2'
+      title: 'Todo 2'
     ,
-      name: 'Todo 3'
+      title: 'Todo 3'
     ]
 
     @todosView = new TodosView { @collection }
@@ -19,6 +19,7 @@ describe 'TodosView', ->
   it 'should render all items by default', ->
 
     @todosView.$('.todo').length.should.equal 3
+    @todosView.$el.should.contain 'Todo 1'
 
   it 'should handle addition of new items', ->
 
