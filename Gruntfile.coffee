@@ -242,5 +242,5 @@ module.exports = (grunt) ->
     'watch'
   ]
 
-  # Run the 'build' task by default.
-  grunt.registerTask 'default', ['build']
+  # Run the 'server' task by default.
+  grunt.registerTask 'default', ['server']
