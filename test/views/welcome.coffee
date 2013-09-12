@@ -1,12 +1,13 @@
 describe 'The WelcomeView', ->
 
-  it 'should render the message', ->
+  beforeEach ->
 
     WelcomeView = require 'app/views/welcome'
 
-    message = 'Hi.'
+    @message = 'Hi.'
 
-    welcomeView = new WelcomeView
-      message: message
+    @welcomeView = new WelcomeView
+      message: @message
 
-    welcomeView.$el.should.contain message
+  it 'should render the message', ->
+    @welcomeView.$el.should.contain @message
