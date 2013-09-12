@@ -10,6 +10,7 @@ LIVERELOAD_PORT = 35740
 # snippet at the end of any .html pages served by the connect task. This
 # removes the need for a browser extension to use LiveReload.
 lrSnippetMiddleware = require('connect-livereload') port: LIVERELOAD_PORT
+modRewrite = require 'connect-modrewrite'
 
 module.exports = (grunt) ->
 
@@ -29,6 +30,9 @@ module.exports = (grunt) ->
         options:
           middleware: (connect) ->
             [
+              modRewrite [
+                '!\\.\\w+$ /'
+              ]
               lrSnippetMiddleware
               connect.static path.resolve 'public'
             ]
