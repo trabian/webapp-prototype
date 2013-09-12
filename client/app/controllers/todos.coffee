@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-{ TodoCollection } = require 'app/models/todos'
+{ TodoCollection } = require 'app/models/todo'
 
 TodoListView = require 'app/views/todos'
 
