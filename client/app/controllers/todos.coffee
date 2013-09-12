@@ -18,4 +18,4 @@ module.exports = class TodosController extends BaseController
 
     @view = new TodoListView
       collection: collection
-      container: '#main'
+      region: 'content'
