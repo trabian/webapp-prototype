@@ -205,7 +205,7 @@ module.exports = (grunt) ->
       unit:
         background: true
         singleRun: false
-      continuous:
+      single:
         singleRun: true
 
   # Run the server and watch for changes.
@@ -234,7 +234,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'test', [
     'build:js'
-    'karma:continuous'
+    'karma:single'
   ]
 
   grunt.registerTask 'test:watch', [
