@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-WelcomeView = require '../views/welcome'
+WelcomeView = require 'app/views/welcome'
 
 module.exports = class WelcomeController extends Chaplin.Controller
 
