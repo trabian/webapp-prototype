@@ -5,3 +5,5 @@ public/generated
 .sass-cache
 Gemfile.lock
 .DS_Store
+*.sublime-project
+*.sublime-workspace
