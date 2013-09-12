@@ -16,8 +16,6 @@ module.exports = class TodosController extends BaseController
       name: 'This is another todo'
     ]
 
-    window.collection = collection
-
     @view = new TodoListView
       collection: collection
       container: '#main'
