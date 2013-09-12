@@ -1,7 +1,5 @@
-Chaplin = require 'chaplin'
+BaseCollectionView = require 'app/views/base/collection'
 
-module.exports = class TodoListView extends Chaplin.CollectionView
-
-  animationDuration: 0
+module.exports = class TodosView extends BaseCollectionView
 
   itemView: require './todo'
