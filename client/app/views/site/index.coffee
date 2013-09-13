@@ -6,5 +6,6 @@ module.exports = class SiteView extends BaseView
 
   regions:
     'content': '#content'
+    'header': '#header'
 
   template: require './template'
