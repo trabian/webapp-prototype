@@ -110,6 +110,9 @@ module.exports = (grunt) ->
         options:
           sassDir: 'client/sass/lib'
           cssDir: 'public/generated/css/lib'
+          importPath: [
+            'bower_components/bootstrap-sass/lib'
+          ]
 
     # Convert CommonJS source files to browser-ready .js files.
     browserify:
@@ -124,6 +127,7 @@ module.exports = (grunt) ->
             'bower_components/underscore/underscore.js:underscore'
             'bower_components/backbone/backbone.js:backbone'
             'bower_components/jquery/jquery.js:jquery'
+            'bower_components/bootstrap-sass/dist/js/bootstrap.js:bootstrap'
           ]
 
       app:
@@ -131,7 +135,7 @@ module.exports = (grunt) ->
         dest: 'public/generated/js/app.js'
         options:
           debug: true
-          external: ['backbone', 'underscore', 'jquery']
+          external: ['backbone', 'underscore', 'jquery', 'bootstrap']
 
           # Chaplin needs the ability to reference modules within the app, so
           # it needs to be included in the same .js file as the app. For
