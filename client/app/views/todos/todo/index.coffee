@@ -2,15 +2,22 @@ BaseView = require 'app/views/base'
 
 module.exports = class TodoView extends BaseView
 
-  className: ->
-
-    classes = ['todo', 'list-group-item']
-
-    if @model.get 'completed'
-      classes.push 'done'
-
-    classes.join ' '
+  className: 'todo list-group-item'
 
   tagName: 'li'
 
   template: require './template'
+
+  initialize: ->
+
+    super
+
+    @listenTo @model, 'change', @render
+
+  render: ->
+
+    super
+
+    @$el.toggleClass 'done', @model.get 'completed'
+
+    @
