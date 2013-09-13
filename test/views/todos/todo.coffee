@@ -39,3 +39,53 @@ describe 'TodoView', ->
 
       todoView.$('[type=checkbox]').should.not.be.checked
       todoView.$el.should.not.have.class 'done'
+
+  describe 'changes to the model', ->
+
+    beforeEach ->
+
+      @todo = new Todo
+        title: 'A Title'
+        completed: false
+
+      @todoView = new TodoView
+        model: @todo
+
+    it 'should update the title when the title attribute changes', ->
+
+      @todoView.$el.should.contain 'A Title'
+
+      @todo.set
+        title: 'A New Title'
+
+      @todoView.$el.should.contain 'A New Title'
+
+    describe 'changes to the "completed" attribute', ->
+
+      it 'should update the checkbox', ->
+
+        @todoView.$('[type=checkbox]').should.not.be.checked
+
+        @todo.set
+          completed: true
+
+        @todoView.$('[type=checkbox]').should.be.checked
+
+        @todo.set
+          completed: false
+
+        @todoView.$('[type=checkbox]').should.not.be.checked
+
+      it 'should update the "done" class', ->
+
+        @todoView.$el.should.not.have.class 'done'
+
+        @todo.set
+          completed: true
+
+        @todoView.$el.should.have.class 'done'
+
+        @todo.set
+          completed: false
+
+        @todoView.$el.should.not.have.class 'done'
