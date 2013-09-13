@@ -89,3 +89,28 @@ describe 'TodoView', ->
           completed: false
 
         @todoView.$el.should.not.have.class 'done'
+
+  describe 'changes to the view', ->
+
+    beforeEach ->
+
+      @todo = new Todo
+        title: 'A Title'
+        completed: false
+
+      @todoView = new TodoView
+        model: @todo
+
+    it 'should update the "completed" attribute when the checkbox is updated', ->
+
+      $checkbox = @todoView.$ '[type=checkbox]'
+
+      @todo.get('completed').should.be.false
+
+      $checkbox.prop(checked: true).trigger 'change'
+
+      @todo.get('completed').should.be.true
+
+      $checkbox.prop(checked: false).trigger 'change'
+
+      @todo.get('completed').should.be.false
