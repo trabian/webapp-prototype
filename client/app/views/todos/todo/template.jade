@@ -1,1 +1,4 @@
-p <strong>#{title}</strong>: #{completed ? 'Complete' : 'Incomplete'}
+.checkbox
+  label
+    input(type='checkbox', checked=completed)
+    = title
