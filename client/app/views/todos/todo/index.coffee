@@ -2,12 +2,6 @@ BaseView = require 'app/views/base'
 
 module.exports = class TodoView extends BaseView
 
-  className: 'todo list-group-item'
-
-  tagName: 'li'
-
-  template: require './template'
-
   bindings:
 
      # :el is a special selector that binds to the main view delegate (view.$el)
@@ -20,10 +14,8 @@ module.exports = class TodoView extends BaseView
 
     '[type=checkbox]': 'completed'
 
-  render: ->
+  className: 'todo list-group-item'
 
-    super
+  tagName: 'li'
 
-    @stickit()
-
-    @
+  template: require './template'
