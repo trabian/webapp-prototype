@@ -8,24 +8,22 @@ module.exports = class TodoView extends BaseView
 
   template: require './template'
 
-  initialize: ->
+  bindings:
 
-    super
+     # :el is a special selector that binds to the main view delegate (view.$el)
+    ':el':
+      observe: 'completed'
+      update: ($el, val) ->
+        $el.toggleClass 'done', val
 
-    @listenTo @model, 'change:title', ->
-      @$('.title').text @model.get 'title'
+    '.title': 'title'
 
-    @listenTo @model, 'change:completed', ->
-
-      @$('[type=checkbox]').prop
-        checked: @model.get 'completed'
-
-      @$el.toggleClass 'done', @model.get 'completed'
+    '[type=checkbox]': 'completed'
 
   render: ->
 
     super
 
-    @$el.toggleClass 'done', @model.get 'completed'
+    @stickit()
 
     @
