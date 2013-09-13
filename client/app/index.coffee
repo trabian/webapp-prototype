@@ -4,6 +4,8 @@ Backbone = require 'backbone'
 Backbone.$ = require 'jquery'
 window._ = require 'underscore'
 
+require 'bootstrap'
+
 # Instantiate application
 Application = require './application'
 

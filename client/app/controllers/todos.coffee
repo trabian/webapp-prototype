@@ -6,6 +6,8 @@ TodoListView = require 'app/views/todos'
 
 module.exports = class TodosController extends BaseController
 
+  tab: 'todos'
+
   index: ->
 
     collection = new TodoCollection [
