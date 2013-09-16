@@ -1,4 +1,4 @@
-BaseCollectionView = require 'app/views/base/collection'
+BaseCollectionView = require 'core/views/base/collection'
 
 module.exports = class TodosView extends BaseCollectionView
 

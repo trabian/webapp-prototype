@@ -1,4 +1,4 @@
-BaseView = require 'app/views/base'
+BaseView = require 'core/views/base'
 
 module.exports = class WelcomeView extends BaseView
 
