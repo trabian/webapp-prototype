@@ -50,7 +50,7 @@ module.exports = (grunt) ->
       # expression below.
       browserify:
         files: ['client/app/**/*.{coffee,jade,js}']
-        tasks: ['coffeelint:app', 'browserify:app', 'karma:unit:run']
+        tasks: ['coffeelint', 'browserify:app', 'karma:unit:run']
 
       # Trigger livereload when any .html files are changed within 'public'.
       html:
@@ -75,7 +75,7 @@ module.exports = (grunt) ->
 
       karma:
         files: ['test/**/*.coffee']
-        tasks: ['coffeelint:test', 'karma:unit:run']
+        tasks: ['karma:unit:run']
 
     bower:
       install:
@@ -126,6 +126,7 @@ module.exports = (grunt) ->
           alias: [
             'bower_components/underscore/underscore.js:underscore'
             'bower_components/backbone/backbone.js:backbone'
+            'bower_components/backbone.stickit/backbone.stickit.js:stickit'
             'bower_components/jquery/jquery.js:jquery'
             'bower_components/bootstrap-sass/dist/js/bootstrap.js:bootstrap'
           ]
@@ -135,7 +136,7 @@ module.exports = (grunt) ->
         dest: 'public/generated/js/app.js'
         options:
           debug: true
-          external: ['backbone', 'underscore', 'jquery', 'bootstrap']
+          external: ['backbone', 'underscore', 'jquery', 'bootstrap', 'stickit']
 
           # Chaplin needs the ability to reference modules within the app, so
           # it needs to be included in the same .js file as the app. For
@@ -183,14 +184,6 @@ module.exports = (grunt) ->
 
     coffeelint:
       app: ['client/app/**/*.coffee']
-      test:
-        files:
-          src: [
-            'test/**/*.coffee'
-          ]
-        options:
-          max_line_length:
-            level: 'ignore'
 
     # Open the web app within the default browser.
     open:
