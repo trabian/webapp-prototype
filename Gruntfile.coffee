@@ -50,7 +50,7 @@ module.exports = (grunt) ->
       # expression below.
       browserify:
         files: ['client/app/**/*.{coffee,jade,js}']
-        tasks: ['coffeelint:app', 'browserify:app', 'karma:unit:run']
+        tasks: ['coffeelint', 'browserify:app', 'karma:unit:run']
 
       # Trigger livereload when any .html files are changed within 'public'.
       html:
@@ -75,7 +75,7 @@ module.exports = (grunt) ->
 
       karma:
         files: ['test/**/*.coffee']
-        tasks: ['coffeelint:test', 'karma:unit:run']
+        tasks: ['karma:unit:run']
 
     bower:
       install:
@@ -184,14 +184,6 @@ module.exports = (grunt) ->
 
     coffeelint:
       app: ['client/app/**/*.coffee']
-      test:
-        files:
-          src: [
-            'test/**/*.coffee'
-          ]
-        options:
-          max_line_length:
-            level: 'ignore'
 
     # Open the web app within the default browser.
     open:
