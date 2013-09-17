@@ -75,7 +75,7 @@ module.exports = (grunt) ->
 
       karma:
         files: ['test/**/*.coffee']
-        tasks: ['karma:unit:run']
+        tasks: ['coffeelint:test', 'karma:unit:run']
 
     bower:
       install:
@@ -194,6 +194,14 @@ module.exports = (grunt) ->
 
     coffeelint:
       app: ['client/app/**/*.coffee']
+      test:
+        files:
+          src: [
+            'test/**/*.coffee'
+          ]
+        options:
+          max_line_length:
+            level: 'ignore'
 
     # Open the web app within the default browser.
     open:
