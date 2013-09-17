@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-BaseCollectionView = require 'app/views/base/collection'
+BaseCollectionView = require 'core/views/base/collection'
 
 describe 'BaseCollectionView', ->
 
