@@ -206,6 +206,8 @@ module.exports = (grunt) ->
             'coffeeify'
           ]
 
+          external: ['underscore']
+
           aliasMappings: [
             cwd: 'development'
             src: ['**/*.{coffee,js,jade}']
@@ -217,6 +219,17 @@ module.exports = (grunt) ->
               # will be exposed as app/views/hello.
               dest = dest.replace /\/index\.(\w*)$/, '.$1'
               "dev/#{dest}"
+          ,
+            cwd: 'extract/trabian-webapp-core/development'
+            src: ['**/*.{coffee,js,jade}']
+            dest: 'core/dev'
+            rename: (src, dest) ->
+
+              # Rename index.coffee files so they can be referenced externally
+              # without the index.coffee. For example, app/views/hello/index
+              # will be exposed as app/views/hello.
+              dest = dest.replace /\/index\.(\w*)$/, '.$1'
+              "core/dev/#{dest}"
           ]
 
     # Use the default config for browserify_navigation, which will store the
