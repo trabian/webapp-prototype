@@ -1,6 +1,6 @@
 Chaplin = require 'chaplin'
 
-BaseView = require 'app/views/base'
+BaseView = require 'core/views/base'
 
 describe 'The BaseView', ->
 
