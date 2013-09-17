@@ -1,5 +1,3 @@
-ProjectsController = require 'app/controllers/projects'
-
 { Project, ProjectCollection } = require 'app/models/project'
 
 describe 'Project', ->
