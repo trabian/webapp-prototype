@@ -12,3 +12,12 @@ module.exports = class BaseView extends Chaplin.View
   # getTemplateDate overrides.
   getTemplateData: ->
     _(super).defaults { @options }
+
+  render: ->
+
+    super
+
+    if @bindings and @model
+      @stickit()
+
+    @
