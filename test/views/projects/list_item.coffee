@@ -1,4 +1,4 @@
-ProjectView = require 'app/views/projects/project'
+ProjectItemView = require 'app/views/projects/list_item'
 
 { Project } = require 'app/models/project'
 
@@ -9,7 +9,7 @@ describe 'ProjectView', ->
     project = new Project
       name: 'My Project'
 
-    projectView = new ProjectView
+    projectView = new ProjectItemView
       model: project
 
     projectView.$el.should.contain 'My Project'
@@ -17,5 +17,7 @@ describe 'ProjectView', ->
     project.set
       name: 'My New Name'
 
-    projectView.$el.should.contain 'My New Name'
+    projectView.$el.should.have 'a'
+
+    projectView.$('a').should.contain 'My New Name'
 
