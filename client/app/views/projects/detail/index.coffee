@@ -9,6 +9,9 @@ module.exports = class ProjectView extends BaseView
   bindings:
     '.name': 'name'
 
+  ownerBindings:
+    '.owner-name': 'name'
+
   render: ->
 
     super
@@ -16,5 +19,14 @@ module.exports = class ProjectView extends BaseView
     @subview 'todos', new TodosView
       collection: @model.get 'todos'
       el: @$ '.todos'
+
+    @listenToAndTrigger @model, 'change:owner', ->
+
+      if previousOwner = @model.previous 'owner'
+        @unstickit previousOwner
+
+      if owner = @model.get 'owner'
+
+        @stickit owner, @ownerBindings
 
     @

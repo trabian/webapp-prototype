@@ -24,7 +24,12 @@ module.exports = class ProjectsController extends BaseController
     project = new Project
       id: params.id
 
-    project.fetch()
+    project.fetch().done ->
+
+      if owner = project.get 'owner'
+
+        unless owner.get 'name'
+          owner.fetch()
 
     @view = new ProjectDetailView
       model: project

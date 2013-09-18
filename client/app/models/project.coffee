@@ -2,6 +2,8 @@
 
 { TodoCollection } = require './todo'
 
+{ Person } = require './person'
+
 class Project extends BaseModel
 
   resourceName: 'projects'
@@ -14,6 +16,10 @@ class Project extends BaseModel
     type: 'HasMany'
     key: 'todos'
     collectionType: TodoCollection
+  ,
+    type: 'HasOne'
+    key: 'owner'
+    relatedModel: Person
   ]
 
 class ProjectCollection extends BaseCollection
