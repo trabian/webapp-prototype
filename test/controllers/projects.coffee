@@ -20,7 +20,7 @@ describe 'ProjectsController', ->
       @server.respondWith '/projects', JSON.stringify
         projects: [
           id: 1
-          name: 'My Projectt'
+          name: 'My Project'
         ]
 
       @controller.index()
