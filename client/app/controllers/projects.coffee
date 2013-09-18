@@ -1,8 +1,9 @@
 BaseController = require './base'
 
-{ ProjectCollection } = require 'app/models/project'
+{ Project, ProjectCollection } = require 'app/models/project'
 
 ProjectListView = require 'app/views/projects'
+ProjectDetailView = require 'app/views/projects/detail'
 
 module.exports = class ProjectsController extends BaseController
 
@@ -16,4 +17,15 @@ module.exports = class ProjectsController extends BaseController
 
     @view = new ProjectListView
       collection: collection
+      region: 'content'
+
+  show: (params) ->
+
+    project = new Project
+      id: params.id
+
+    project.fetch()
+
+    @view = new ProjectDetailView
+      model: project
       region: 'content'
