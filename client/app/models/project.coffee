@@ -11,6 +11,7 @@ class Project extends BaseModel
   urlRoot: '/projects'
 
   relations: [
+    type: 'HasMany'
     key: 'todos'
     collectionType: TodoCollection
   ]
