@@ -14,11 +14,11 @@ module.exports = (server) ->
 
   server.get '/projects', { projects }
 
-  server.get /\/projects\/(\d+)/, (req, id) ->
+  server.get '/projects/:id', (req, params) ->
 
-    id = parseInt id
+    id = parseInt params.id
 
     project = _.findWhere projects, { id }
 
-    req.respond 200, { 'Content-Type': 'application/json' }, JSON.stringify
+    req.respond
       projects: [ project ]
