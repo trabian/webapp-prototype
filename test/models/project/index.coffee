@@ -14,7 +14,7 @@ describe 'Project', ->
 
       @server.respondWith /\/projects\/(\d+)/, (req, id) ->
 
-        req.respond 200, {}, JSON.stringify
+        req.respond 200, { "Content-Type": "application/json" }, JSON.stringify
           projects: [
             id: parseInt id # Use whatever ID is passed
             name: 'My Project'
