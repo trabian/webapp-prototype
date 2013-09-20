@@ -181,7 +181,7 @@ module.exports = (grunt) ->
               dest = dest.replace /\/index\.(\w*)$/, '.$1'
               "app/#{dest}"
           ,
-            cwd: 'extract/trabian-webapp-core/app'
+            cwd: 'submodules/trabian-webapp-core/app'
             src: ['**/*.{coffee,js,jade}']
             dest: 'core'
             rename: (src, dest) ->
@@ -221,7 +221,7 @@ module.exports = (grunt) ->
               dest = dest.replace /\/index\.(\w*)$/, '.$1'
               "dev/#{dest}"
           ,
-            cwd: 'extract/trabian-webapp-core/development'
+            cwd: 'submodules/trabian-webapp-core/development'
             src: ['**/*.{coffee,js,jade}']
             dest: 'core/dev'
             rename: (src, dest) ->
