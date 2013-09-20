@@ -1,11 +1,15 @@
-Chaplin = require 'chaplin'
+{ BaseModel, BaseCollection } = require 'core/models/base'
 
-class Todo extends Chaplin.Model
+class Todo extends BaseModel
 
   defaults:
     completed: false
 
-class TodoCollection extends Chaplin.Collection
+  resourceName: 'todos'
+
+  urlRoot: '/todos'
+
+class TodoCollection extends BaseCollection
 
   model: Todo
 

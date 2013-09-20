@@ -21,7 +21,7 @@ module.exports = (grunt) ->
       # needed. If any other extensions are used, add them in the 'files'
       # expression below.
       browserify:
-        files: ['app/**/*.{coffee,js}']
+        files: ['app/**/*.{coffee,js}', 'development/**/*.{coffee,js}']
         tasks: ['coffeelint:app', 'browserify:app', 'karma:unit:run']
 
       karma:
@@ -51,6 +51,7 @@ module.exports = (grunt) ->
             'bower_components/backbone/backbone.js:backbone'
             'bower_components/backbone.stickit/backbone.stickit.js:stickit'
             'bower_components/jquery/jquery.js:jquery'
+            'bower_components/uritemplates/bin/uritemplate.js:uritemplate'
           ]
 
       app:
@@ -58,7 +59,7 @@ module.exports = (grunt) ->
         dest: '.tmp/app.js'
         options:
           debug: true
-          external: ['backbone', 'underscore', 'jquery', 'stickit']
+          external: ['backbone', 'underscore', 'jquery', 'stickit', 'uritemplate']
 
           # Chaplin needs the ability to reference modules within the app, so
           # it needs to be included in the same .js file as the app. For
@@ -94,6 +95,17 @@ module.exports = (grunt) ->
               # will be exposed as app/views/hello.
               dest = dest.replace /\/index\.(\w*)$/, '.$1'
               "core/#{dest}"
+          ,
+            cwd: 'development'
+            src: ['**/*.{coffee,js,jade}']
+            dest: 'core/dev'
+            rename: (src, dest) ->
+
+              # Rename index.coffee files so they can be referenced externally
+              # without the index.coffee. For example, app/views/hello/index
+              # will be exposed as app/views/hello.
+              dest = dest.replace /\/index\.(\w*)$/, '.$1'
+              "core/dev/#{dest}"
           ]
 
     coffeelint:

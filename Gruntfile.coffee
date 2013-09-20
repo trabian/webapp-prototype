@@ -35,6 +35,7 @@ module.exports = (grunt) ->
               ]
               lrSnippetMiddleware
               connect.static path.resolve 'public'
+              connect.static path.resolve 'bower_components'
             ]
 
     # Watch the specified files and run the specified tasks when any of those
@@ -50,7 +51,11 @@ module.exports = (grunt) ->
       # expression below.
       browserify:
         files: ['client/app/**/*.{coffee,jade,js}']
-        tasks: ['coffeelint', 'browserify:app', 'karma:unit:run']
+        tasks: ['coffeelint:app', 'browserify:app', 'karma:unit:run']
+
+      browserifyDevelopment:
+        files: ['development/**/*.{coffee,jade,js}']
+        tasks: ['coffeelint:development', 'browserify:development']
 
       # Trigger livereload when any .html files are changed within 'public'.
       html:
@@ -75,7 +80,7 @@ module.exports = (grunt) ->
 
       karma:
         files: ['test/**/*.coffee']
-        tasks: ['karma:unit:run']
+        tasks: ['coffeelint:test', 'karma:unit:run']
 
     bower:
       install:
@@ -129,6 +134,7 @@ module.exports = (grunt) ->
             'bower_components/backbone.stickit/backbone.stickit.js:stickit'
             'bower_components/jquery/jquery.js:jquery'
             'bower_components/bootstrap-sass/dist/js/bootstrap.js:bootstrap'
+            'bower_components/uritemplates/bin/uritemplate.js:uritemplate'
           ]
 
       app:
@@ -136,7 +142,7 @@ module.exports = (grunt) ->
         dest: 'public/generated/js/app.js'
         options:
           debug: true
-          external: ['backbone', 'underscore', 'jquery', 'bootstrap', 'stickit']
+          external: ['backbone', 'underscore', 'jquery', 'bootstrap', 'stickit', 'uritemplate']
 
           # Chaplin needs the ability to reference modules within the app, so
           # it needs to be included in the same .js file as the app. For
@@ -187,6 +193,46 @@ module.exports = (grunt) ->
               "core/#{dest}"
           ]
 
+      development:
+        src: ['development/index.coffee']
+        dest: 'public/generated/js/development.js'
+        options:
+          debug: true
+
+          extensions: [
+            '.js', '.coffee'
+          ]
+
+          transform: [
+            'coffeeify'
+          ]
+
+          external: ['underscore']
+
+          aliasMappings: [
+            cwd: 'development'
+            src: ['**/*.{coffee,js,jade}']
+            dest: 'dev'
+            rename: (src, dest) ->
+
+              # Rename index.coffee files so they can be referenced externally
+              # without the index.coffee. For example, app/views/hello/index
+              # will be exposed as app/views/hello.
+              dest = dest.replace /\/index\.(\w*)$/, '.$1'
+              "dev/#{dest}"
+          ,
+            cwd: 'extract/trabian-webapp-core/development'
+            src: ['**/*.{coffee,js,jade}']
+            dest: 'core/dev'
+            rename: (src, dest) ->
+
+              # Rename index.coffee files so they can be referenced externally
+              # without the index.coffee. For example, app/views/hello/index
+              # will be exposed as app/views/hello.
+              dest = dest.replace /\/index\.(\w*)$/, '.$1'
+              "core/dev/#{dest}"
+          ]
+
     # Use the default config for browserify_navigation, which will store the
     # browserify dependency graph in Redis to support use of Browserify
     # Navigation plugin in Sublime Text.
@@ -194,6 +240,15 @@ module.exports = (grunt) ->
 
     coffeelint:
       app: ['client/app/**/*.coffee']
+      development: ['development/**/*.coffee']
+      test:
+        files:
+          src: [
+            'test/**/*.coffee'
+          ]
+        options:
+          max_line_length:
+            level: 'ignore'
 
     # Open the web app within the default browser.
     open:
