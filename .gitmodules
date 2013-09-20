@@ -1,0 +1,3 @@
+[submodule "submodules/trabian-webapp-core"]
+	path = submodules/trabian-webapp-core
+	url = https://github.com/trabian/trabian-webapp-core.git
