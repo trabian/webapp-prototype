@@ -1,3 +1,4 @@
 server = require './server'
 
-server.run()
+server.run
+  delay: 1000

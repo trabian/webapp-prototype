@@ -1,9 +1,13 @@
 FakeServer = require 'core/dev/lib/server'
 
+_ = require 'underscore'
+
 module.exports =
 
-  run: ->
+  run: (options = {}) ->
 
-    new FakeServer
-      responses: require './responses'
+    _(options).defaults
       delay: 200
+      responses: require './responses'
+
+    new FakeServer options
