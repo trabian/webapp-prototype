@@ -24,13 +24,22 @@ module.exports = class ProjectsController extends BaseController
     project = new Project
       id: params.id
 
-    project.fetch().done ->
-
-      if owner = project.get 'owner'
-
-        unless owner.get 'name'
-          owner.fetch()
+    project.fetch()
 
     @view = new ProjectDetailView
       model: project
       region: 'content'
+      loadingText: 'Loading project details...'
+      promise: project.pipe ->
+
+        if owner = project.get 'owner'
+
+          # If the owner hasn't been fetched then do so
+          if owner.get 'name'
+            owner.resolve()
+          else
+            owner.fetch()
+
+          # The owner is a deferred, so the promise passed to the view will
+          # not be considered fulfilled until the owner is fulfilled.
+          return owner

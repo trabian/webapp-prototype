@@ -12,6 +12,9 @@ projects = [
   name: 'My Other Project'
   links:
     owner: '/people/3'
+,
+  id: 3
+  name: 'My Ownerless Project'
 ]
 
 module.exports = (server) ->

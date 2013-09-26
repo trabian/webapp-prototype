@@ -8,14 +8,15 @@ describe 'ProjectsController', ->
 
     @controller = new ProjectsController
 
-    @controller.beforeAction()
-
   afterEach ->
     @server.restore()
 
   describe 'index action', ->
 
     it 'should render the projects', (done) ->
+
+      @controller.beforeAction {},
+        action: 'index'
 
       @server.respondWith '/projects', JSON.stringify
         projects: [
@@ -48,15 +49,24 @@ describe 'ProjectsController', ->
           ]
         ]
 
+      @controller.beforeAction { id: 1 }, { action: 'show' }
+
       @controller.show id: 1
 
-      @server.respond()
+      view = @controller.view
+      promise = view.options.promise
 
-      _.defer =>
+      view.$el.should.contain 'Loading project details...'
 
-        @controller.view.$el.should.contain 'My Project'
+      view.options.promise.done ->
 
-        @controller.view.$el.should.contain 'My Todo'
-        @controller.view.$el.should.contain 'My Other Todo'
+        view.$el.should.not.contain 'Loading project details...'
+
+        view.$el.should.contain 'My Project'
+
+        view.$el.should.contain 'My Todo'
+        view.$el.should.contain 'My Other Todo'
 
         done()
+
+      @server.respond()
