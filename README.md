@@ -8,7 +8,7 @@ The stack consists of:
  * [Compass](http://compass-style.org/) as the CSS authoring framework.
  * [Grunt](http://gruntjs.com/) as a task runner for build-related tasks.
  * [Bower](http://bower.io/) for client-side package management.
- * [Karma](http://karma-runner.github.io/0.10/index.html), [mocha](http://visionmedia.github.io/mocha/), and [Chai](http://chaijs.com/) for testing.
+ * [Karma](http://karma-runner.github.io/0.10/index.html), [mocha](http://mochajs.org/), and [Chai](http://chaijs.com/) for testing.
 
 **To generate a new project using the structure within this prototype, use the [generator-trabian-webapp](https://github.com/trabian/generator-trabian-webapp) Yeoman generator.**
 
